@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- test时得把applicationContext-redis.xml文件中用于测试的开启注解的配置<context:annotation-config/>加上！！-->
+	<!-- 不test时要去掉，因为在applicationContext-service.xml中的 <context:component-scan base-package="com.taotao.content.service">中，隐含了-->
+    <!-- 开启注解 -->
+    <!-- <context:annotation-config /> -->
+    
+    <!-- 注意：上面的配置文件中关于开启注解的配置是为了单元测试类中的测试代码而添加的，
+    因为使用单元测试类测试的话，不会加载其它配置文件，相应地就不会开启注解，所以需要这句配置，测试完后记得要删掉这个配置哟！ -->
+
+    <!-- redis单机版 -->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="host" value="192.168.244.146" />
+        <constructor-arg name="port" value="6379" />
+    </bean>
+    <bean id="jedisClientPool" class="com.taotao.content.jedis.JedisClientPool"></bean>
+
+</beans>
