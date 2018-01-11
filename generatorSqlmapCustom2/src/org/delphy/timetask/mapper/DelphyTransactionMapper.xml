@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.delphy.timetask.mapper.DelphyTransactionMapper" >
+  <resultMap id="BaseResultMap" type="org.delphy.timetask.pojo.DelphyTransaction" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="market_id" property="marketId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="option_id" property="optionId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+    <result column="trans_type" property="transType" jdbcType="BIT" />
+    <result column="merkle_root" property="merkleRoot" jdbcType="VARCHAR" />
+    <result column="merkle_order" property="merkleOrder" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="withdraw_address" property="withdrawAddress" jdbcType="VARCHAR" />
+    <result column="coin_type" property="coinType" jdbcType="BIT" />
+    <result column="event_title" property="eventTitle" jdbcType="VARCHAR" />
+    <result column="tx_hash" property="txHash" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, market_id, user_id, option_id, amount, cost, trans_type, merkle_root, merkle_order, 
+    status, create_time, update_time, withdraw_address, coin_type, event_title, tx_hash
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.delphy.timetask.pojo.DelphyTransactionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from delphy_transaction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from delphy_transaction
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from delphy_transaction
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.delphy.timetask.pojo.DelphyTransactionExample" >
+    delete from delphy_transaction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.delphy.timetask.pojo.DelphyTransaction" >
+    insert into delphy_transaction (id, market_id, user_id, 
+      option_id, amount, cost, 
+      trans_type, merkle_root, merkle_order, 
+      status, create_time, update_time, 
+      withdraw_address, coin_type, event_title, 
+      tx_hash)
+    values (#{id,jdbcType=BIGINT}, #{marketId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{optionId,jdbcType=BIGINT}, #{amount,jdbcType=INTEGER}, #{cost,jdbcType=DECIMAL}, 
+      #{transType,jdbcType=BIT}, #{merkleRoot,jdbcType=VARCHAR}, #{merkleOrder,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{withdrawAddress,jdbcType=VARCHAR}, #{coinType,jdbcType=BIT}, #{eventTitle,jdbcType=VARCHAR}, 
+      #{txHash,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.delphy.timetask.pojo.DelphyTransaction" >
+    insert into delphy_transaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="marketId != null" >
+        market_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="optionId != null" >
+        option_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="transType != null" >
+        trans_type,
+      </if>
+      <if test="merkleRoot != null" >
+        merkle_root,
+      </if>
+      <if test="merkleOrder != null" >
+        merkle_order,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="withdrawAddress != null" >
+        withdraw_address,
+      </if>
+      <if test="coinType != null" >
+        coin_type,
+      </if>
+      <if test="eventTitle != null" >
+        event_title,
+      </if>
+      <if test="txHash != null" >
+        tx_hash,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="marketId != null" >
+        #{marketId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="optionId != null" >
+        #{optionId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="transType != null" >
+        #{transType,jdbcType=BIT},
+      </if>
+      <if test="merkleRoot != null" >
+        #{merkleRoot,jdbcType=VARCHAR},
+      </if>
+      <if test="merkleOrder != null" >
+        #{merkleOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawAddress != null" >
+        #{withdrawAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="coinType != null" >
+        #{coinType,jdbcType=BIT},
+      </if>
+      <if test="eventTitle != null" >
+        #{eventTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="txHash != null" >
+        #{txHash,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.delphy.timetask.pojo.DelphyTransactionExample" resultType="java.lang.Integer" >
+    select count(*) from delphy_transaction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update delphy_transaction
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.marketId != null" >
+        market_id = #{record.marketId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.optionId != null" >
+        option_id = #{record.optionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=INTEGER},
+      </if>
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transType != null" >
+        trans_type = #{record.transType,jdbcType=BIT},
+      </if>
+      <if test="record.merkleRoot != null" >
+        merkle_root = #{record.merkleRoot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merkleOrder != null" >
+        merkle_order = #{record.merkleOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.withdrawAddress != null" >
+        withdraw_address = #{record.withdrawAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coinType != null" >
+        coin_type = #{record.coinType,jdbcType=BIT},
+      </if>
+      <if test="record.eventTitle != null" >
+        event_title = #{record.eventTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txHash != null" >
+        tx_hash = #{record.txHash,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update delphy_transaction
+    set id = #{record.id,jdbcType=BIGINT},
+      market_id = #{record.marketId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      option_id = #{record.optionId,jdbcType=BIGINT},
+      amount = #{record.amount,jdbcType=INTEGER},
+      cost = #{record.cost,jdbcType=DECIMAL},
+      trans_type = #{record.transType,jdbcType=BIT},
+      merkle_root = #{record.merkleRoot,jdbcType=VARCHAR},
+      merkle_order = #{record.merkleOrder,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      withdraw_address = #{record.withdrawAddress,jdbcType=VARCHAR},
+      coin_type = #{record.coinType,jdbcType=BIT},
+      event_title = #{record.eventTitle,jdbcType=VARCHAR},
+      tx_hash = #{record.txHash,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.delphy.timetask.pojo.DelphyTransaction" >
+    update delphy_transaction
+    <set >
+      <if test="marketId != null" >
+        market_id = #{marketId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="optionId != null" >
+        option_id = #{optionId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="transType != null" >
+        trans_type = #{transType,jdbcType=BIT},
+      </if>
+      <if test="merkleRoot != null" >
+        merkle_root = #{merkleRoot,jdbcType=VARCHAR},
+      </if>
+      <if test="merkleOrder != null" >
+        merkle_order = #{merkleOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawAddress != null" >
+        withdraw_address = #{withdrawAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="coinType != null" >
+        coin_type = #{coinType,jdbcType=BIT},
+      </if>
+      <if test="eventTitle != null" >
+        event_title = #{eventTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="txHash != null" >
+        tx_hash = #{txHash,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.delphy.timetask.pojo.DelphyTransaction" >
+    update delphy_transaction
+    set market_id = #{marketId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      option_id = #{optionId,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=INTEGER},
+      cost = #{cost,jdbcType=DECIMAL},
+      trans_type = #{transType,jdbcType=BIT},
+      merkle_root = #{merkleRoot,jdbcType=VARCHAR},
+      merkle_order = #{merkleOrder,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      withdraw_address = #{withdrawAddress,jdbcType=VARCHAR},
+      coin_type = #{coinType,jdbcType=BIT},
+      event_title = #{eventTitle,jdbcType=VARCHAR},
+      tx_hash = #{txHash,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

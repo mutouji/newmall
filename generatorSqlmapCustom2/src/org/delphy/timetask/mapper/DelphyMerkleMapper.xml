@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.delphy.timetask.mapper.DelphyMerkleMapper" >
+  <resultMap id="BaseResultMap" type="org.delphy.timetask.pojo.DelphyMerkle" >
+    <id column="root_hash" property="rootHash" jdbcType="VARCHAR" />
+    <result column="tx_hash" property="txHash" jdbcType="VARCHAR" />
+    <result column="receipts" property="receipts" jdbcType="VARCHAR" />
+    <result column="txs" property="txs" jdbcType="VARCHAR" />
+    <result column="tx_count" property="txCount" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    root_hash, tx_hash, receipts, txs, tx_count, create_time, update_time, status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.delphy.timetask.pojo.DelphyMerkleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from delphy_merkle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from delphy_merkle
+    where root_hash = #{rootHash,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from delphy_merkle
+    where root_hash = #{rootHash,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.delphy.timetask.pojo.DelphyMerkleExample" >
+    delete from delphy_merkle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.delphy.timetask.pojo.DelphyMerkle" >
+    insert into delphy_merkle (root_hash, tx_hash, receipts, 
+      txs, tx_count, create_time, 
+      update_time, status)
+    values (#{rootHash,jdbcType=VARCHAR}, #{txHash,jdbcType=VARCHAR}, #{receipts,jdbcType=VARCHAR}, 
+      #{txs,jdbcType=VARCHAR}, #{txCount,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT}, #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="org.delphy.timetask.pojo.DelphyMerkle" >
+    insert into delphy_merkle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rootHash != null" >
+        root_hash,
+      </if>
+      <if test="txHash != null" >
+        tx_hash,
+      </if>
+      <if test="receipts != null" >
+        receipts,
+      </if>
+      <if test="txs != null" >
+        txs,
+      </if>
+      <if test="txCount != null" >
+        tx_count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rootHash != null" >
+        #{rootHash,jdbcType=VARCHAR},
+      </if>
+      <if test="txHash != null" >
+        #{txHash,jdbcType=VARCHAR},
+      </if>
+      <if test="receipts != null" >
+        #{receipts,jdbcType=VARCHAR},
+      </if>
+      <if test="txs != null" >
+        #{txs,jdbcType=VARCHAR},
+      </if>
+      <if test="txCount != null" >
+        #{txCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.delphy.timetask.pojo.DelphyMerkleExample" resultType="java.lang.Integer" >
+    select count(*) from delphy_merkle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update delphy_merkle
+    <set >
+      <if test="record.rootHash != null" >
+        root_hash = #{record.rootHash,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txHash != null" >
+        tx_hash = #{record.txHash,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receipts != null" >
+        receipts = #{record.receipts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txs != null" >
+        txs = #{record.txs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txCount != null" >
+        tx_count = #{record.txCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update delphy_merkle
+    set root_hash = #{record.rootHash,jdbcType=VARCHAR},
+      tx_hash = #{record.txHash,jdbcType=VARCHAR},
+      receipts = #{record.receipts,jdbcType=VARCHAR},
+      txs = #{record.txs,jdbcType=VARCHAR},
+      tx_count = #{record.txCount,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.delphy.timetask.pojo.DelphyMerkle" >
+    update delphy_merkle
+    <set >
+      <if test="txHash != null" >
+        tx_hash = #{txHash,jdbcType=VARCHAR},
+      </if>
+      <if test="receipts != null" >
+        receipts = #{receipts,jdbcType=VARCHAR},
+      </if>
+      <if test="txs != null" >
+        txs = #{txs,jdbcType=VARCHAR},
+      </if>
+      <if test="txCount != null" >
+        tx_count = #{txCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where root_hash = #{rootHash,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.delphy.timetask.pojo.DelphyMerkle" >
+    update delphy_merkle
+    set tx_hash = #{txHash,jdbcType=VARCHAR},
+      receipts = #{receipts,jdbcType=VARCHAR},
+      txs = #{txs,jdbcType=VARCHAR},
+      tx_count = #{txCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      status = #{status,jdbcType=BIT}
+    where root_hash = #{rootHash,jdbcType=VARCHAR}
+  </update>
+</mapper>
