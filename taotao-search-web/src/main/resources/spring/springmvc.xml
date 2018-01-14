@@ -18,9 +18,12 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    
+    <!-- 全局异常处理器 -->
+    <bean class="com.taotao.search.exception.GlobalExceptionResolver" />
    
     <!-- 引用dubbo服务 -->
     <dubbo:application name="taotao-search-web" />
     <dubbo:registry protocol="zookeeper" address="192.168.244.146:2181,192.168.244.146:2182,192.168.244.146:2183" />
-	<!-- <dubbo:reference interface="com.taotao.content.service.ContentService" id="contentService" /> -->
+	<dubbo:reference interface="com.taotao.search.service.SearchService" id="searchService" timeout="300000" /> 
 </beans>
