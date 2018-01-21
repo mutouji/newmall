@@ -11,9 +11,13 @@
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://114.215.69.125:8806/delphy" userId="delphy"
 			password="WangLu123#@!">
+		</jdbcConnection> -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+		    connectionURL="jdbc:mysql://delphy-test.cb7daihtzvyl.ap-southeast-1.rds.amazonaws.com:3306/delphy?allowMultiQueries=true"
+		    userId="delphy" password="WangLu123#!">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
             connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg" 
@@ -50,6 +54,7 @@
 		<!-- 指定数据库表 -->
 		<table schema="" tableName="delphy_merkle"></table>
 		<table schema="" tableName="delphy_transaction"></table>
+		<table schema="" tableName="delphy_market"></table>
 
 	</context>
 </generatorConfiguration>

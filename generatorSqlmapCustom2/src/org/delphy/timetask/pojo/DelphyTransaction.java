@@ -36,6 +36,12 @@ public class DelphyTransaction implements Serializable {
 
     private String txHash;
 
+    private String optionDesc;
+
+    private String reason;
+
+    private BigDecimal costLimit;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -164,5 +170,29 @@ public class DelphyTransaction implements Serializable {
 
     public void setTxHash(String txHash) {
         this.txHash = txHash == null ? null : txHash.trim();
+    }
+
+    public String getOptionDesc() {
+        return optionDesc;
+    }
+
+    public void setOptionDesc(String optionDesc) {
+        this.optionDesc = optionDesc == null ? null : optionDesc.trim();
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason == null ? null : reason.trim();
+    }
+
+    public BigDecimal getCostLimit() {
+        return costLimit;
+    }
+
+    public void setCostLimit(BigDecimal costLimit) {
+        this.costLimit = costLimit;
     }
 }

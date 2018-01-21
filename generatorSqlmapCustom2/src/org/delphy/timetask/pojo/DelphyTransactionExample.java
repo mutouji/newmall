@@ -1104,6 +1104,206 @@ public class DelphyTransactionExample {
             addCriterion("tx_hash not between", value1, value2, "txHash");
             return (Criteria) this;
         }
+
+        public Criteria andOptionDescIsNull() {
+            addCriterion("option_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescIsNotNull() {
+            addCriterion("option_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescEqualTo(String value) {
+            addCriterion("option_desc =", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescNotEqualTo(String value) {
+            addCriterion("option_desc <>", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescGreaterThan(String value) {
+            addCriterion("option_desc >", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescGreaterThanOrEqualTo(String value) {
+            addCriterion("option_desc >=", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescLessThan(String value) {
+            addCriterion("option_desc <", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescLessThanOrEqualTo(String value) {
+            addCriterion("option_desc <=", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescLike(String value) {
+            addCriterion("option_desc like", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescNotLike(String value) {
+            addCriterion("option_desc not like", value, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescIn(List<String> values) {
+            addCriterion("option_desc in", values, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescNotIn(List<String> values) {
+            addCriterion("option_desc not in", values, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescBetween(String value1, String value2) {
+            addCriterion("option_desc between", value1, value2, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionDescNotBetween(String value1, String value2) {
+            addCriterion("option_desc not between", value1, value2, "optionDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonIsNull() {
+            addCriterion("reason is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonIsNotNull() {
+            addCriterion("reason is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonEqualTo(String value) {
+            addCriterion("reason =", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonNotEqualTo(String value) {
+            addCriterion("reason <>", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonGreaterThan(String value) {
+            addCriterion("reason >", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonGreaterThanOrEqualTo(String value) {
+            addCriterion("reason >=", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonLessThan(String value) {
+            addCriterion("reason <", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonLessThanOrEqualTo(String value) {
+            addCriterion("reason <=", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonLike(String value) {
+            addCriterion("reason like", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonNotLike(String value) {
+            addCriterion("reason not like", value, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonIn(List<String> values) {
+            addCriterion("reason in", values, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonNotIn(List<String> values) {
+            addCriterion("reason not in", values, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonBetween(String value1, String value2) {
+            addCriterion("reason between", value1, value2, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonNotBetween(String value1, String value2) {
+            addCriterion("reason not between", value1, value2, "reason");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitIsNull() {
+            addCriterion("cost_limit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitIsNotNull() {
+            addCriterion("cost_limit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitEqualTo(BigDecimal value) {
+            addCriterion("cost_limit =", value, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitNotEqualTo(BigDecimal value) {
+            addCriterion("cost_limit <>", value, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitGreaterThan(BigDecimal value) {
+            addCriterion("cost_limit >", value, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("cost_limit >=", value, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitLessThan(BigDecimal value) {
+            addCriterion("cost_limit <", value, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("cost_limit <=", value, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitIn(List<BigDecimal> values) {
+            addCriterion("cost_limit in", values, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitNotIn(List<BigDecimal> values) {
+            addCriterion("cost_limit not in", values, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("cost_limit between", value1, value2, "costLimit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCostLimitNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("cost_limit not between", value1, value2, "costLimit");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
