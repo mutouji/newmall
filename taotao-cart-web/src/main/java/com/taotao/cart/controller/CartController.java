@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.CookieUtils;
 import com.taotao.common.utils.JsonUtils;
 import com.taotao.pojo.TbItem;
@@ -78,5 +80,60 @@ public class CartController {
         // 把json转换成List对象
         List<TbItem> list = JsonUtils.jsonToList(json, TbItem.class);
         return list;
+    }
+    
+    @RequestMapping("/cart/cart")
+    public String showCartList(HttpServletRequest request) {
+    	// 从Cookie中取出购物车列表
+    	List<TbItem> cartList = getCartList(request);
+    	// 把购物车列表传递给cart.jsp页面
+    	request.setAttribute("cartList", cartList);
+    	// 返回逻辑视图
+    	return "cart";
+    }
+    
+    /**
+     * 更新购物车商品数量
+     */
+    @RequestMapping("/cart/update/num/{itemId}/{num}")
+    @ResponseBody
+    public TaotaoResult updateNum(@PathVariable Long itemId, @PathVariable Integer num,
+            HttpServletRequest request, HttpServletResponse response) {
+        // 取购物车商品列表
+        List<TbItem> cartList = getCartList(request);
+        // 遍历商品列表找到商品
+        for (TbItem tbItem : cartList) {
+            if (tbItem.getId().intValue() == itemId) {
+                // 更新商品数量
+                tbItem.setNum(num);
+                break;
+            }
+        }
+        // 写入cookie
+        CookieUtils.setCookie(request, response, COOKIE_TT_CART, 
+                JsonUtils.objectToJson(cartList), COOKIE_CART_EXPIRE, true);
+        // 返回结果
+        return TaotaoResult.ok();
+    }
+    
+    @RequestMapping("/cart/delete/{itemId}")
+    public String deleteCartItem(@PathVariable Long itemId,
+            HttpServletRequest request, HttpServletResponse response) {
+        // 取购物车商品列表
+        List<TbItem> cartList = getCartList(request);
+        // 找到对应的商品
+        for (TbItem tbItem : cartList) {
+            if (tbItem.getId().longValue() == itemId) {
+                // 删除商品
+                cartList.remove(tbItem);
+                // 退出循环
+                break;
+            }
+        }
+        // 写入Cookie
+        CookieUtils.setCookie(request, response, COOKIE_TT_CART, 
+                JsonUtils.objectToJson(cartList), COOKIE_CART_EXPIRE, true);
+        // 返回逻辑视图，需要做redirect跳转
+        return "redirect:/cart/cart.html";
     }
 }

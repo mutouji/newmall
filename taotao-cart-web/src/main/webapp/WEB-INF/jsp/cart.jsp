@@ -22,7 +22,7 @@
 <jsp:include page="commons/shortcut.jsp" />
 <!--shortcut end-->
 <div class="w w1 header clearfix">
-	<div id="logo"><a href="http://www.taotao.com/"><img clstag="clickcart|keycount|xincart|logo" src="/images/taotao-logo.gif" title="返回淘淘商城首页" alt="返回淘淘商城首页"></a></div>
+	<div id="logo"><a href="/"><img clstag="clickcart|keycount|xincart|logo" src="/images/taotao-logo.gif" title="返回淘淘商城首页" alt="返回淘淘商城首页"></a></div>
     <div class="language"><a href="javascript:void(0);" onclick="toEnCart()"></a></div>
 	<div class="progress clearfix">
 		<ul class="progress-1">
@@ -35,8 +35,6 @@
 <div class="w cart">
 	<div class="cart-hd group">
 		<h2>我的购物车</h2>
-		<span id="show2" class="fore"> <span>现在&nbsp;</span><a class="btn" href="javascript:goToLogin();"><span class="btn-text">登录</span></a><span>， 您购物车中的商品将被永久保存</span>
- </span>
 	</div>
 	<div id="show">
 	
@@ -48,7 +46,7 @@
     <div class="cart-thead clearfix">
         <div class="column t-checkbox form"><input data-cart="toggle-cb" name="toggle-checkboxes" id="toggle-checkboxes_up" type="checkbox" checked="" value=""><label for="toggle-checkboxes_up">全选</label></div>
         <div class="column t-goods">商品</div>
-        <div class="column t-price">京东价</div>
+        <div class="column t-price">淘淘价</div>
         <div class="column t-promotion">优惠</div>
         <div class="column t-inventory">库存</div>
         <div class="column t-quantity">数量</div>
@@ -58,33 +56,33 @@
         <!-- ************************商品开始********************* -->
         <c:set var="totalPrice" value="0"></c:set>
         <c:forEach items="${cartList}" var="cart">
-        	<c:set var="totalPrice"  value="${ totalPrice + (cart.itemPrice * cart.num)}"/>
+        	<c:set var="totalPrice"  value="${ totalPrice + (cart.price * cart.num)}"/>
 	        <div id="product_11345721" data-bind="rowid:1" class="item item_selected ">
 		        <div class="item_form clearfix">
 		            <div class="cell p-checkbox"><input data-bind="cbid:1" class="checkbox" type="checkbox" name="checkItem" checked="" value="11345721-1"></div>
 		            <div class="cell p-goods">
 		                <div class="p-img">
-		                	<a href="http://www.taotao.com/item/${cart.itemId }.html" target="_blank">
-		                		<img clstag="clickcart|keycount|xincart|p-imglistcart" src="${cart.itemImage}" alt="${cart.itemTitle}" width="52" height="52">
+		                	<a href="/item/${cart.id }.html" target="_blank">
+		                		<img clstag="clickcart|keycount|xincart|p-imglistcart" src="${cart.image}" alt="${cart.title}" width="52" height="52">
 		                	</a>
 		                </div>    
 		                <div class="p-name">
-		                	<a href="http://www.taotao.com/item/${cart.itemId }.html" clstag="clickcart|keycount|xincart|productnamelink" target="_blank">${cart.itemTitle}</a>
+		                	<a href="/item/${cart.id }.html" clstag="clickcart|keycount|xincart|productnamelink" target="_blank">${cart.title}</a>
 		                	<span class="promise411 promise411_11345721" id="promise411_11345721"></span>
 		                </div>    
 		            </div>
-		            <div class="cell p-price"><span class="price">¥<fmt:formatNumber groupingUsed="false" value="${cart.itemPrice / 100}" maxFractionDigits="2" minFractionDigits="2"/> </span></div>
+		            <div class="cell p-price"><span class="price">¥<fmt:formatNumber groupingUsed="false" value="${cart.price / 100}" maxFractionDigits="2" minFractionDigits="2"/> </span></div>
 		            <div class="cell p-promotion">
 		            </div>
 		            <div class="cell p-inventory stock-11345721">有货</div>
 		            <div class="cell p-quantity" for-stock="for-stock-11345721">
 		                <div class="quantity-form" data-bind="">
 		                    <a href="javascript:void(0);" class="decrement" clstag="clickcart|keycount|xincart|diminish1" id="decrement">-</a>
-		                    <input type="text" class="quantity-text" itemPrice="${cart.itemPrice}" itemId="${cart.itemId}" value="${cart.num }" id="changeQuantity-11345721-1-1-0">
+		                    <input type="text" class="quantity-text" itemPrice="${cart.price}" itemId="${cart.id}" value="${cart.num }" id="changeQuantity-11345721-1-1-0">
 		                    <a href="javascript:void(0);" class="increment" clstag="clickcart|keycount|xincart|add1" id="increment">+</a>
 		                </div>
 		            </div>
-		            <div class="cell p-remove"><a id="remove-11345721-1" data-more="removed-87.20-1" clstag="clickcart|keycount|xincart|btndel318558" class="cart-remove" href="/cart/delete/${cart.itemId}.html">删除</a>
+		            <div class="cell p-remove"><a id="remove-11345721-1" data-more="removed-87.20-1" clstag="clickcart|keycount|xincart|btndel318558" class="cart-remove" href="/cart/delete/${cart.id}.html">删除</a>
 		            </div>
 		        </div>
 	        </div> 
@@ -116,21 +114,21 @@
               <span class="shopping">
                   <b>
                   </b>
-                  <a href="http://www.taotao.com/" target="_blank" clstag="clickcart|keycount|xincart|coudanlink" id="continue">继续购物</a>
+                  <a href="/" target="_blank" clstag="clickcart|keycount|xincart|coudanlink" id="continue">继续购物</a>
               </span>
           </div>
           <div class="cart-total-2014">
               <div class="cart-button">
                   <span class="check-comm-btns" id="checkout-jd">
-                      <a class="checkout" href="/order/create.html" clstag="clickcart|keycount|xincart|gotoOrderInfo" id="toSettlement">去结算<b></b></a>
+                      <a class="checkout" href="http://localhost:8092/order/order-cart.html" clstag="clickcart|keycount|xincart|gotoOrderInfo" id="toSettlement">去结算<b></b></a>
                   </span>
                   <span class="combine-btns" style="display:none">
                         <span class="fore1" style="display: none;">
                           <a href="" class="combine-btn">不支持合并付款</a>
                       </span>
                       <span class="fore2 hide" style="display: inline;">
-                          <a href="javascript:goToOverseaOrder();" class="checkout-jdInt">去京东国际结算<b></b></a>
-                          <a href="javascript:goToOrder();" class="checkout-jd">去京东结算<b></b></a>
+                          <a href="javascript:goToOverseaOrder();" class="checkout-jdInt">去淘淘国际结算<b></b></a>
+                          <a href="javascript:goToOrder();" class="checkout-jd">去淘淘结算<b></b></a>
                       </span>
                   </span>
               </div>
