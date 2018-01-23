@@ -17,11 +17,24 @@
             <artifactId>taotao-common</artifactId>  
             <version>0.0.1-SNAPSHOT</version>  
         </dependency>
+        <!-- 依赖taotao-content-interface -->
         <dependency>
 		    <groupId>com.taotao</groupId>
 		    <artifactId>taotao-content-interface</artifactId>
 		    <version>0.0.1-SNAPSHOT</version>
 		</dependency>
+        <!-- 依赖taotao-portal-interface -->
+        <dependency>
+		    <groupId>com.taotao</groupId>
+		    <artifactId>taotao-portal-interface</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+        <!-- 依赖totao-sso-interface -->
+        <dependency>
+        	<groupId>com.taotao</groupId>
+        	<artifactId>taotao-sso-interface</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>

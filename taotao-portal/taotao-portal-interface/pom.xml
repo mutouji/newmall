@@ -2,9 +2,15 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.taotao</groupId>
-    <artifactId>taotao-quartz</artifactId>
+    <artifactId>taotao-portal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>taotao-quartz-service</artifactId>
-  <packaging>war</packaging>
+  <artifactId>taotao-portal-interface</artifactId>
+    <dependencies>
+  	<dependency>
+  		<groupId>com.taotao</groupId>
+  		<artifactId>taotao-manager-pojo</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
